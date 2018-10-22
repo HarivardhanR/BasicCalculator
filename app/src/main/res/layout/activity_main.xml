@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id= "@+id/calculator"
+        android:background="?android:attr/dividerVertical"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtSolution"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="15pt"
+                />
+
+            <TextView
+                android:id="@+id/txtInput"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="15pt"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/btnClear"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="@string/all_clear"
+                    android:onClick="clear"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lastfourth"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal" >
+
+
+                <Button
+                    android:id="@+id/btnSeven"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="7"
+                    android:onClick="clickedSeven"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnEight"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="8"
+                    android:onClick="clickedEight"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnNine"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="9"
+                    android:onClick="clickedNine"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnDivide"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="/"
+                    android:onClick="clickedDivide"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lastthird"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal" >
+
+
+                <Button
+                    android:id="@+id/btnFour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="4"
+                    android:onClick="clickedFour"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnFive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="5"
+                    android:onClick="clickedFive"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnSix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="6"
+                    android:onClick="clickedSix"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnMultiply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="x"
+                    android:onClick="clickedMultiply"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lastsecond"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal" >
+
+
+                <Button
+                    android:id="@+id/btnOne"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="1"
+                    android:onClick="clickedOne"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnTwo"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="2"
+                    android:onClick="clickedTwo"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnThree"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="3"
+                    android:onClick="clickedThree"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnSubtract"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="-"
+                    android:onClick="clickedSubtract"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/last"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/btnDecimal"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="."
+                    android:onClick="clickedDecimal"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnZero"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="0"
+                    android:onClick="clickedZero"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnEquals"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="="
+                    android:onClick="clickedEquals"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+                <Button
+                    android:id="@+id/btnAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:text="+"
+                    android:onClick="clickedPlus"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+</LinearLayout>
