@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
             isFirstDigit = true;
             isBeforeOperator=true;
             isOperationCompled=false;
+        }else {
+            Toast.makeText(getApplicationContext(), "max 15 operations", Toast.LENGTH_SHORT).show();
         }
     }
     public void clickedDivide(View view) {
@@ -149,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
             isFirstDigit = true;
             isBeforeOperator=true;
             isOperationCompled=false;
+        }else {
+            Toast.makeText(getApplicationContext(), "max 15 operations", Toast.LENGTH_SHORT).show();
         }
     }
     public void clickedMultiply(View view) {
@@ -163,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
             isFirstDigit = true;
             isBeforeOperator=true;
             isOperationCompled=false;
+        }else {
+            Toast.makeText(getApplicationContext(), "max 15 operations", Toast.LENGTH_SHORT).show();
         }
     }
     public void clickedEquals(View view) {
