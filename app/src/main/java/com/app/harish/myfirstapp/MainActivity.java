@@ -133,106 +133,128 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public int evaluate(String expression){
-        //Stack for Numbers
-        Stack<Integer> numbers = new Stack<>();
+    public int evaluate(String expression)
+    {
+        char[] tokens = expression.toCharArray();
 
-        //Stack for operators
-        Stack<Character> operations = new Stack<>();
+        // Stack for numbers
+        Stack<Integer> values = new
+                Stack<Integer>();
 
-        for(int i=0; i<expression.length();i++) {
-            char c = expression.charAt(i);
+        // Stack for Operators
+        Stack<Character> ops = new
+                Stack<Character>();
+
+        for (int i = 0; i < tokens.length; i++)
+        {
             //check if it is number
-            if(Character.isDigit(c)){
-                //Entry is Digit, it could be greater than one digit number
-                int num = 0;
-                while (Character.isDigit(c)) {
-                    num = num*10 + (c-'0');
-                    i++;
-                    if(i < expression.length())
-                        c = expression.charAt(i);
-                    else
-                        break;
-                }
+            if (Character.isDigit(tokens[i]))
+            {
+                StringBuffer sbuf = new
+                        StringBuffer();
+
+                // There may be more than one
+                // digits in number
+                while (i < tokens.length &&
+                        tokens[i] >= '0' &&
+                        tokens[i] <= '9')
+                    sbuf.append(tokens[i++]);
+                values.push(Integer.parseInt(sbuf.
+                        toString()));
+
                 i--;
-                //push it into stack
-                numbers.push(num);
-            }else if(c=='('){
-                //push it to operators stack
-                operations.push(c);
             }
-            //Closed brace, evaluate the entire brace
-            else if(c==')') {
-                while(operations.peek()!='('){
-                    int output = performOperation(numbers, operations);
-                    //push it back to stack
-                    numbers.push(output);
-                }
-                operations.pop();
-            }
-            // current character is operator
-            else if(isOperator(c)){
-                //1. If current operator has higher precedence than operator on top of the stack,
-                //the current operator can be placed in stack
-                // 2. else keep popping operator from stack and perform the operation in  numbers stack till
-                //either stack is not empty or current operator has higher precedence than operator on top of the stack
-                while(!operations.isEmpty() && precedence(c)<precedence(operations.peek())){
-                    int output = performOperation(numbers, operations);
-                    //push it back to stack
-                    numbers.push(output);
-                }
-                //now push the current operator to stack
-                operations.push(c);
-            }
-        }
-        //If here means entire expression has been processed,
-        //Perform the remaining operations in stack to the numbers stack
 
-        while(!operations.isEmpty()){
-            int output = performOperation(numbers, operations);
-            //push it back to stack
-            numbers.push(output);
+            // Current token is an opening brace,
+            // push it to 'ops'
+            else if (tokens[i] == '(')
+                ops.push(tokens[i]);
+
+                // Closing brace encountered,
+                // solve entire brace
+            else if (tokens[i] == ')')
+            {
+                while (ops.peek() != '(')
+                    values.push(performOperation(ops.pop(),
+                            values.pop(),
+                            values.pop()));
+                ops.pop();
+            }
+
+            // Current token is an operator.
+            else if (tokens[i] == '+' ||
+                    tokens[i] == '-' ||
+                    tokens[i] == '*' ||
+                    tokens[i] == '/' ||
+                    tokens[i] == '^')
+            {
+                // While top of 'ops' has same
+                // or greater precedence to current
+                // token, which is an operator.
+                // perform operation on top of 'ops'
+                // to top two elements in values stack
+                while (!ops.empty() &&
+                        hasPrecedence(tokens[i],
+                                ops.peek()))
+                    values.push(performOperation(ops.pop(),
+                            values.pop(),
+                            values.pop()));
+
+                // Push current token to 'ops'.
+                ops.push(tokens[i]);
+            }
         }
-        return numbers.pop();
+
+        // Entire expression has been
+        // parsed at this point, apply remaining
+        // ops to remaining values
+        while (!ops.empty())
+            values.push(performOperation(ops.pop(),
+                    values.pop(),
+                    values.pop()));
+
+        // Top of 'values' contains
+        // result, return it
+        return values.pop();
     }
 
-    static int precedence(char c){
-        switch (c){
-            case '+':
-            case '-':
-                return 1;
-            case '*':
-            case '/':
-                return 2;
-            case '^':
-                return 3;
-        }
-        return -1;
+    // Returns true if 'op2' has higher
+    // or same precedence as 'op1',
+    // otherwise returns false.
+    public static boolean hasPrecedence(
+            char op1, char op2)
+    {
+        if (op2 == '(' || op2 == ')')
+            return false;
+        if ((op1 == '*' || op1 == '/') &&
+                (op2 == '+' || op2 == '-'))
+            return false;
+        if ((op2 == '*' || op2 == '/' || op2 == '+' || op2 == '-') && (op1 == '^'))
+            return false;
+        else
+            return true;
     }
 
-    public int performOperation(Stack<Integer> numbers, Stack<Character> operations) {
-        int a = numbers.pop();
-        int b = numbers.pop();
-        char operation = operations.pop();
-        switch (operation) {
+    public int performOperation(char op,
+                                int b, int a)
+    {
+        switch (op)
+        {
             case '+':
                 return a + b;
             case '-':
-                return b - a;
+                return a - b;
             case '*':
                 return a * b;
             case '^':
-                return (int)Math.pow(b,a);
+                return (int)Math.pow(a,b);
             case '/':
-                if (a == 0)
-                    Toast.makeText(this,"Cannot divide by zero!",Toast.LENGTH_SHORT).show();
+                if (b == 0)
+                    Toast.makeText(getApplicationContext(),"Cannot divide by zero!",Toast.LENGTH_SHORT).show();
                 else
-                    return b / a;
+                    return a / b;
         }
         return 0;
     }
 
-    public boolean isOperator(char c){
-        return (c=='+'||c=='-'||c=='/'||c=='*'||c=='^');
-    }
 }
